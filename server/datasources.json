@@ -1,0 +1,17 @@
+{
+  "mongo_local": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "mongodb://127.0.0.1:27017/mongo_local",
+    "database": "mongo_local",
+    "name": "mongo_local",
+    "connector": "mongodb"
+  },
+  "mongo_cloud": {
+    "port": 27017,
+    "url": "mongodb+srv://minix_admin:rNunehabXAC0zqkP@minnix-a4gc5.mongodb.net/mongo_cloud?retryWrites=true",
+    "database": "mongo_cloud",
+    "name": "mongo_cloud",
+    "connector": "mongodb"
+  }
+}

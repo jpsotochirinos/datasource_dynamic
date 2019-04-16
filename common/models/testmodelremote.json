@@ -1,0 +1,7 @@
+{
+  "name": "testmodelremote",
+  "base": "testmodel",
+  "plural": "test",
+  "trackChanges": false,
+  "enableRemoteReplication": true
+}
