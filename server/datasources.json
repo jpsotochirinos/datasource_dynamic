@@ -9,7 +9,7 @@
   },
   "mongo_cloud": {
     "port": 27017,
-    "url": "mongodb+srv://minix_admin:rNunehabXAC0zqkP@minnix-a4gc5.mongodb.net/mongo_cloud?retryWrites=true",
+    "url": "mongodatasource",
     "database": "mongo_cloud",
     "name": "mongo_cloud",
     "connector": "mongodb"
