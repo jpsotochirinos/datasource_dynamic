@@ -61,7 +61,7 @@ module.exports = function(server) {
     });
     
     function handleConflicts(conflicts) {
-      // TODO notify user about the 
+      // test notify user about the 
       //console.log(conflicts);
     }
   };
