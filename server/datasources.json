@@ -9,7 +9,7 @@
   },
   "mongo_cloud": {
     "port": 27017,
-    "url": "mongodatasource",
+    "url": "mongodb+srv://{{user}}:{{password}}@{{clustername}}.mongodb.net/mongo_cloud",
     "database": "mongo_cloud",
     "name": "mongo_cloud",
     "connector": "mongodb"

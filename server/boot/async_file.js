@@ -1,15 +1,9 @@
 'use strict';
-
-
+//import the server for the models
 module.exports = function(server) {
-    //var app = require('../../server/server');
     
+    var since = { push: -1, pull: -1 };    
 
-    var since = { push: -1, pull: -1 };
-    
-    // var LocalProduct = server.models.Product;
-    // var RemoteProduct = server.models.productremote;
-    
     server.network = {
         _isConnected: true,
         get isConnected() {
@@ -20,59 +14,55 @@ module.exports = function(server) {
           this._isConnected = value;
         }
       };
-    
-    var LocalUnity = server.models.Testmodel;
-    var RemoteUnity = server.models.Testmodelremote;
+
+    var Local = server.models.Testmodel;
+    var Remote = server.models.Testmodelremote;
 
     function sync() {
-        
+      //create a sync function for each model and call in the observe method
       // It is important to push local changes first,
       // that way any conflicts are resolved at the client
-      LocalUnity.replicate(
+      Local.replicate(
         since.push,
-        RemoteUnity,
+        Remote,
         function pushed(err, conflicts, cps) {
-          // TODO: handle err
+          // Test: handle err
           
           if (conflicts) 
           {
             handleConflicts(conflicts);
-            //console.log(conflicts);
+            console.log(conflicts);
             
           }
         //console.log(cps);
-        
-  
           since.push = cps;
-  
-          RemoteUnity.replicate(
+          Remote.replicate(
             since.pull,
-            LocalUnity,
+            Local,
             function pulled(err, conflicts, cps) {
-              // TODO: handle err
+              // Test: handle err
               if (conflicts){
                 handleConflicts(conflicts.map(function(c) { return c.swapParties(); }));
               }
-              console.log(cps);
+              //console.log(cps);
               since.pull = cps;
             });
         });
     }
-  
-    LocalUnity.observe('after save', function(ctx, next) {
+    // observe method
+    Local.observe('after save', function(ctx, next) {
       next();
-      sync(); // in background
+      sync(); // sync function  in background
     });
-  
-    LocalUnity.observe('after delete', function(ctx, next) {
+    // observe method
+    Local.observe('after delete', function(ctx, next) {
       next();
-      sync(); // in background
+      sync(); // sync function  in background
     });
-    server.sync = sync;
+    
     function handleConflicts(conflicts) {
       // TODO notify user about the 
       //console.log(conflicts);
-      
     }
   };
   
